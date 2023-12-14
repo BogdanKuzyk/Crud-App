@@ -8,6 +8,10 @@ const usersInfo = [];
 function App() {
   const [users, setUsers] = useState(usersInfo);
 
+  const addNewUser = (newUser) => {
+    setUsers([...users, newUser]);
+  };
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -26,7 +30,7 @@ function App() {
 
   return (
     <div>
-      <ClientForm />
+      <ClientForm addNewUser={addNewUser} />
       <ClientsDisplay users={users} /> .
     </div>
   );

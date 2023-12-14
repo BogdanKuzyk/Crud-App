@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ClientForm = () => {
+const ClientForm = ({ addNewUser }) => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -46,7 +46,14 @@ const ClientForm = () => {
       phone: phone,
     };
 
-    console.log(newUser);
+    addNewUser(newUser);
+
+    setName("");
+    setUsername("");
+    setEmail("");
+    setCity("");
+    setZipcode("");
+    setPhone("");
   };
 
   return (
