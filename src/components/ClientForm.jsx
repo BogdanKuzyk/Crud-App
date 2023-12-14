@@ -39,8 +39,10 @@ const ClientForm = () => {
       name: name,
       username: username,
       email: email,
-      city: city,
-      zipcode: zipcode,
+      address: {
+        city: city,
+        zipcode: zipcode,
+      },
       phone: phone,
     };
 
