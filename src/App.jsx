@@ -31,7 +31,7 @@ function App() {
   return (
     <div>
       <ClientForm addNewUser={addNewUser} />
-      <ClientsDisplay users={users} /> .
+      <ClientsDisplay users={users} />
     </div>
   );
 }
