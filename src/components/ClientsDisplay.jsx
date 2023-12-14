@@ -1,22 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const ClientsDisplay = ({ users }) => {
+const ClientsDisplay = ({ users: initialUsers }) => {
+  const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  useEffect(() => {
+    setUsers(initialUsers);
+  }, [initialUsers]);
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    const searchTerm = e.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
+
+    if (searchTerm === "") {
+      setUsers(initialUsers);
+    } else {
+      filterUsers(searchTerm);
+    }
   };
 
-  const filteredUsers = users.filter((user) =>
-    Object.values(user).some((value) => {
-      if (typeof value === "string") {
-        return value.toLowerCase().includes(searchTerm.toLowerCase());
-      } else if (typeof value === "number") {
-        return String(value).includes(searchTerm);
-      }
-      return false;
-    })
-  );
+  const filterUsers = (searchTerm) => {
+    const filteredUsers = initialUsers.filter((user) =>
+      Object.values(user).some((value) => {
+        if (typeof value === "string") {
+          return value.toLowerCase().includes(searchTerm.toLowerCase());
+        } else if (typeof value === "number") {
+          return String(value).includes(searchTerm);
+        }
+        return false;
+      })
+    );
+    setUsers(filteredUsers);
+  };
+
+  const handleSort = () => {
+    const sortedUsers = [...users].sort((a, b) => {
+      const compareResult = a.name.localeCompare(b.name);
+      return sortOrder === "asc" ? compareResult : -compareResult;
+    });
+    setUsers(sortedUsers);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
 
   return (
     <div>
@@ -27,8 +52,9 @@ const ClientsDisplay = ({ users }) => {
           onChange={handleSearch}
           value={searchTerm}
         />
+        <button onClick={handleSort}>Sort</button>
       </div>
-      {filteredUsers.map((user) => (
+      {users.map((user) => (
         <div key={user.id}>
           <p>
             <strong>Name:</strong> {user.name}
@@ -46,7 +72,7 @@ const ClientsDisplay = ({ users }) => {
             <strong>Zipcode:</strong> {user.address.zipcode}
           </p>
           <p>
-            <strong>Phone:</strong> {user.phone}
+            <strong>Phone:</strong> {user.phone}{" "}
           </p>
           <hr />
         </div>
