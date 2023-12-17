@@ -29,12 +29,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div className="ClientForm">
-        <ClientForm addNewUser={addNewUser} />
-      </div>
-      <div className="ClientsDisplay">
-        <ClientsDisplay users={users} />
+    <div>
+      <h1>CRUD Application</h1>
+      <div className="App">
+        <div className="ClientForm">
+          <ClientForm addNewUser={addNewUser} />
+        </div>
+        <div className="ClientsDisplay">
+          <ClientsDisplay users={users} />
+        </div>
       </div>
     </div>
   );
