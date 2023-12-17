@@ -29,9 +29,13 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <ClientForm addNewUser={addNewUser} />
-      <ClientsDisplay users={users} />
+    <div className="App">
+      <div className="ClientForm">
+        <ClientForm addNewUser={addNewUser} />
+      </div>
+      <div className="ClientsDisplay">
+        <ClientsDisplay users={users} />
+      </div>
     </div>
   );
 }

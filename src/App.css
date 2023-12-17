@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+}
+
+.ClientForm {
+  flex: 0.5;
+  margin-left: 20px;
+}
+
+.ClientsDisplay {
+  flex: 1;
+  margin-top: 25px;
+}
