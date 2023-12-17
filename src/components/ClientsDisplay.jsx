@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./ClientsDisplay.css";
 
 const ClientsDisplay = ({ users: initialUsers }) => {
   const [users, setUsers] = useState([]);
@@ -52,31 +53,36 @@ const ClientsDisplay = ({ users: initialUsers }) => {
           onChange={handleSearch}
           value={searchTerm}
         />
-        <button onClick={handleSort}>Sort</button>
+        <button onClick={handleSort} className="sort-button">
+          Sort
+        </button>
       </div>
-      {users.map((user) => (
-        <div key={user.id}>
-          <p>
-            <strong>Name:</strong> {user.name}
-          </p>
-          <p>
-            <strong>Username:</strong> {user.username}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>City:</strong> {user.address.city}
-          </p>
-          <p>
-            <strong>Zipcode:</strong> {user.address.zipcode}
-          </p>
-          <p>
-            <strong>Phone:</strong> {user.phone}{" "}
-          </p>
-          <hr />
-        </div>
-      ))}
+
+      <div className="client-display-aerea">
+        {users.map((user) => (
+          <div key={user.id} className="client-info">
+            <p>
+              <strong>Name:</strong> {user.name}
+            </p>
+            <p>
+              <strong>Username:</strong> {user.username}
+            </p>
+            <p>
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p>
+              <strong>City:</strong> {user.address.city}
+            </p>
+            <p>
+              <strong>Zipcode:</strong> {user.address.zipcode}
+            </p>
+            <p>
+              <strong>Phone:</strong> {user.phone}{" "}
+            </p>
+            <hr />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
