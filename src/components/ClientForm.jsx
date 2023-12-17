@@ -75,7 +75,7 @@ const ClientForm = ({ addNewUser }) => {
     const value = e.target.value;
     setPhone(value);
 
-    if (!/^(\+?\d+)?$/.test(value)) {
+    if (!/^(\+?\d+)/.test(value)) {
       setPhoneError("You must add a phone number");
     } else {
       setPhoneError("");
@@ -135,7 +135,7 @@ const ClientForm = ({ addNewUser }) => {
       if (!/^\d+$|-+$/.test(zipcode)) {
         setZipcodeError("Zip code must contain only digits or a hyphen");
       }
-      if (/^(\+?\d+)?$/.test(phone)) {
+      if (!/^(\+?\d+)/.test(phone)) {
         setPhoneError("You must add a phone number");
       }
     }
